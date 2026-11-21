@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RepoScope · Repository search</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <a class="brand" href="/" aria-label="RepoScope home"><span class="brand-icon" aria-hidden="true"></span>RepoScope</a>
+      <button id="account" class="button secondary" type="button" hidden>Sign in with GitHub</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro">
+      <p class="eyebrow">GITHUB README SEARCH</p>
+      <h1>Search a repository.</h1>
+      <p>Find relevant passages in a GitHub README and jump directly to the source.</p>
+    </section>
+    <div class="workspace">
+      <section class="panel search-panel" aria-labelledby="search-heading">
+        <h2 id="search-heading">Search</h2>
+        <form id="search-form">
+          <div class="repository-label">
+            <label for="repository">Repository</label>
+            <button id="browse-repositories" class="text-button" type="button" aria-expanded="false" aria-controls="repository-picker" hidden>Browse my repositories</button>
+          </div>
+          <input id="repository" placeholder="Paste a GitHub URL or enter owner/repo" autocomplete="off" spellcheck="false" maxlength="500" required>
+          <div id="repository-picker" hidden>
+            <label for="repository-options" class="sr-only">Choose a repository</label>
+            <select id="repository-options" hidden></select>
+            <p id="repository-status" role="status"></p>
+          </div>
+          <label for="query">Search terms</label>
+          <div class="query-row">
+            <input id="query" placeholder="e.g. HTTP timeouts" autocomplete="off" maxlength="500" required>
+            <button class="button primary" type="submit">Search</button>
+          </div>
+        </form>
+        <div class="examples">
+          <span>Try an example</span>
+          <button type="button" data-repository="psf/requests" data-query="HTTP library">psf/requests</button>
+          <button type="button" data-repository="octocat/Hello-World" data-query="Hello World">octocat/Hello-World</button>
+        </div>
+      </section>
+      <aside class="panel access-panel" aria-labelledby="access-heading">
+        <h2 id="access-heading">Repository access</h2>
+        <p class="access-state"><span class="dot"></span><strong id="access-state">Public access</strong></p>
+        <p id="access-detail">Search public repositories without signing in.</p>
+        <div id="auth-instructions" hidden>
+          <p>Enter this code on GitHub, then return here.</p>
+          <code id="device-code"></code>
+          <a href="https://github.com/login/device" target="_blank" rel="noopener noreferrer">Open GitHub</a>
+        </div>
+        <p id="auth-status" role="status"></p>
+      </aside>
+    </div>
+    <section class="panel demo-panel" aria-labelledby="demo-heading">
+      <div class="demo-heading">
+        <div>
+          <h2 id="demo-heading">Permission demo</h2>
+          <p>See how a role change affects answers from the same index. Uses fictional repository data.</p>
+        </div>
+        <button id="run-demo" class="button secondary" type="button">Run demo</button>
+      </div>
+      <div id="demo-output" aria-live="polite" hidden>
+        <p id="demo-question"></p>
+        <div class="demo-comparison">
+          <div><h3>Before revocation</h3><ul id="demo-before"></ul></div>
+          <div><h3>After revocation</h3><p id="demo-after"></p></div>
+        </div>
+      </div>
+      <p id="demo-status" role="status" hidden></p>
+    </section>
+    <section class="results-section" aria-labelledby="results-heading" aria-live="polite">
+      <div class="results-heading"><h2 id="results-heading">Results</h2><span id="result-count"></span></div>
+      <div id="results" class="results">
+        <div class="panel empty"><span class="search-icon" aria-hidden="true"></span><p>Choose a repository and enter search terms.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

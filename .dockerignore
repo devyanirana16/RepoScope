@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!recruiter_app.py
+!github_readme.py
+!repo_qa.py
+!web/
+!web/**
